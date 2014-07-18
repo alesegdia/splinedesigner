@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<!--[if lte IE 8]><meta http-equiv="X-UA-Compatible" content="chrome=1" /><![endif]-->
+<title>Spline Designer</title>
+<script type="application/javascript" src="boot.js"></script>
+</head>
+<style type="text/css">
+
+canvas {
+    image-rendering: optimizeSpeed;
+    image-rendering:-o-crisp-edges;
+    image-rendering:-webkit-optimize-contrast;
+    -ms-interpolation-mode: nearest-neighbor;
+}
+
+#container {width: 800px; display: block; position: absolute; top: 0; }
+
+#toolstab {display: block; position: absolute; left: 760pt;}
+
+</style>
+
+
+<body>
+
+<div id="toolstab">
+	<input type="radio" name="tools" onclick="selectTool('grabber')" /> Grabber<br>
+	<input type="radio" name="tools" checked onclick="selectTool('adder')" /> Adder<br>
+	<button onclick="saveSplineToFile()">Save to file</button><br>
+	<button onclick="removeSelectedKnot()">Remove selected knot</button><br>
+	<input type="radio" name="splinet" onclick="selectSpline('bspline')" />B-Spline<br>
+	<input type="radio" name="splinet" onclick="selectSpline('catmull')" />CatmullRom<br>
+	<input type="radio" name="splinet" onclick="selectSpline('catmulltau')" />CatmullRom tau<br>
+	<hr>
+	<input type="range" min="0" max="5" value="1" step="0.1" onchanged="setTau(this.value)" oninput="setTau(this.value)"/>
+	<span id="valbox"></span><br>
+</div>
+
+<div id="container">
+	<p><canvas id="myCanvas" width="1000" height="600" style="background:#999"></canvas></p>
+</div>
+
+
+
+</body>
+</html>
+
